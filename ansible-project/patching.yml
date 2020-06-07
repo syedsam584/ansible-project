@@ -1,0 +1,25 @@
+---
+- name: 
+  hosts: all
+  tasks: 
+    - name: prestep 01
+      command: yum clean metadata
+    
+    - name: prestep 02
+      command: yum clean all
+    
+    - name: patching servers
+      yum:
+        name: '*'
+        state: latest
+        
+    - debug: 
+        msg: "servers have been patched" 
+
+- hosts: web
+  tasks:
+    - name: rebooting severs
+      reboot:
+       reboot_timeout: 1800 
+       test_command: uptime
+... 
