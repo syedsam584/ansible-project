@@ -22,4 +22,13 @@
       reboot:
        reboot_timeout: 1800 
        test_command: uptime
+
+    - name: WHO AM I 
+      command: whoami
+      register: myname
+      
+    - debug: 
+        msg: "{{myname.stdout}}"
+
+
 ... 
