@@ -2,11 +2,15 @@
 - name: 
   hosts: all
   tasks: 
+    
     - name: prestep 01
+      command: yum clean all
+   
+    - name: prestep 02
       command: yum clean metadata
     
-    - name: prestep 02
-      command: yum clean all
+    - name: prestep 03
+      command: rm-rf /var/cache/yum/*
     
     - name: patching servers
       yum:
@@ -22,4 +26,14 @@
       reboot:
        reboot_timeout: 1800 
        test_command: uptime
+
+    - name: WHO AM I 
+      command: whoami
+      register: myname  
+       
+    - name: display WHO AM I
+      debug: msg="{{ myname.stdout_lines }}"
+
+
+
 ... 
