@@ -2,12 +2,18 @@
 - name: 
   hosts: all
   tasks: 
+    
     - name: prestep 01
+      command: yum clean all
+   
+    - name: prestep 02
       command: yum clean metadata
     
-    - name: prestep 02
-      command: yum clean all
-    
+    - name: prestep 03
+      command: rm-rf /var/cache/yum/*
+      command: subscription-manager repos --list
+      command: yum repolist
+ 
     - name: patching servers
       yum:
         name: '*'
@@ -25,10 +31,10 @@
 
     - name: WHO AM I 
       command: whoami
-      register: myname
-      
-    - debug: 
-        msg: "{{myname.stdout}}"
+      register: myname  
+       
+    - name: display WHO AM I
+      debug: msg="{{ myname.stdout_lines }}"
 
 
-... 
+...
