@@ -37,5 +37,4 @@
       debug: msg="{{ myname.stdout_lines }}"
 
 
-
-... 
+...
