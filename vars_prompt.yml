@@ -1,0 +1,22 @@
+---
+- name: vars prompt
+  hosts: all
+  vars_prompt: 
+
+      - name: myname
+        prompt: "what is your name ?"
+        private: no 
+      
+      - name: password
+        prompt: "what is the password" 
+        private: yes
+   
+  tasks: 
+    - name: vars prompt
+      debug: 
+         msg: "logging as {{ myname }}" 
+    
+    - name: password
+      debug: 
+         msg: "{{ password }}"   
+     
