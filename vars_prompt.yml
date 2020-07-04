@@ -8,9 +8,17 @@
         private: no 
       
       - name: password
-        prompt: "what is the password" 
+        prompt: "what is the password ?" 
         private: yes
-   
+      
+      - name: age 
+        prompt: "what is my age ?"   
+        private: no 
+     
+      - name: call
+        prompt: "what is your call number ?"
+         
+
   tasks: 
     - name: vars prompt
       debug: 
@@ -20,3 +28,12 @@
       debug: 
          msg: "{{ password }}"   
      
+    - name: age 
+      debug:
+         msg: "{{ age }}"
+
+    - name: call
+      debug: 
+          msg: "my call number is {{ call }}" 
+ 
+...  
