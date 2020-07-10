@@ -18,7 +18,8 @@
       yum:
         name: '*'
         state: latest
-        
+        update_cache: yes 
+ 
     - debug: 
         msg: "servers have been patched" 
 

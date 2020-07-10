@@ -9,7 +9,8 @@
    - name: Installing package 
      yum: 
       name: "{{ package }}" 
-      state: latest
+      state: latest 
+      update_cache: yes
      notify: package update 
   
   handlers:       
