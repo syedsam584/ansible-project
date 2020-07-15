@@ -23,7 +23,7 @@
     - debug: 
         msg: "servers have been patched" 
 
-- hosts: all 
+- hosts: web 
   tasks:
     - name: rebooting severs
       reboot:
