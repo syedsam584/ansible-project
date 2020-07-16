@@ -1,10 +1,12 @@
 ---
 - name: playbook massage of the day
-  hosts: all
+  hosts: web 
+  gather_facts: false
   tasks: 
    - name: copy to massage of the day 
      copy:
       src: /root/hosts_motd
       dest: /etc/motd
-   
+      state: absent   
+
               
