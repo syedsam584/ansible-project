@@ -13,7 +13,7 @@
  
        - name: p3
          comment: periorty 3  
-         required: false        
+         required: true        
 
   tasks: 
     - name: install packages
