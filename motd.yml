@@ -6,6 +6,5 @@
      copy:
       src: /root/hosts_motd
       dest: /etc/motd
-     notify: motd changed
    
               
