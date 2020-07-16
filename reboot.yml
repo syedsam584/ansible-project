@@ -1,0 +1,11 @@
+---
+- name: rebooting server
+  hosts: web
+  gather_facts: false
+  tasks: 
+  - name: rebooting
+    reboot:
+      reboot_timeout: 1800
+      test_command: uptime
+
+
