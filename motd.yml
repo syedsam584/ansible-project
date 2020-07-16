@@ -7,6 +7,5 @@
      copy:
       src: /root/hosts_motd
       dest: /etc/motd
-     remote_src: yes 
 
               
