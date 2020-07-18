@@ -1,6 +1,6 @@
 ---
 - name: rebooting server
-  hosts: hosts 
+  hosts: web 
   remote_user: root
   gather_facts: false
   tasks: 
