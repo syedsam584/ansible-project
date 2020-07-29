@@ -1,6 +1,6 @@
 ---
 - name: taking file from remote
-  hosts: web 
+  hosts: all 
   gather_facts: false
   tasks:
   - name: ensure a file exists
