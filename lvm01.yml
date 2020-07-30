@@ -1,0 +1,24 @@
+---
+- name: creating LVM
+  hosts: all 
+  gather_facts: false
+  tasks: 
+  - name: lvcreate
+    lvol:
+       vg: vgdata
+       lv: datatwo 
+       size: 500M
+  
+  - name: create filesystem
+    filesystem: 
+         fstype: ext4
+         dev: /dev/vgdata/datatwo
+
+  - name: mount logical volume
+    mount: 
+       name: /lvdata2
+       src: /dev/vgdata/datatwo
+       fstype: ext4
+       state: mounted 
+
+...
