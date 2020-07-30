@@ -1,6 +1,6 @@
 ---
 - name: creating LVM
-  hosts: web
+  hosts: all 
   gather_facts: false
   tasks: 
   - name: vgcreate
