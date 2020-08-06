@@ -1,6 +1,6 @@
 ---
 - name: playbook massage of the day
-  hosts: web 
+  hosts: all 
   gather_facts: false
   tasks: 
    - name: copy to massage of the day 
