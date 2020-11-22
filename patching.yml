@@ -1,6 +1,6 @@
 ---
 - name: 
-  hosts: all
+  hosts: web 
   gather_facts: false
   tasks: 
     

@@ -1,0 +1,14 @@
+---
+- name: instsall multiple stuff
+  hosts: web
+  tasks: 
+  - name: multiple stuff
+    yum: 
+     name: "{{item}}"
+     state: present
+    with_items:
+        - zip
+        - unzip
+        - tree
+        - httpd
+ 
