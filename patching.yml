@@ -1,6 +1,6 @@
 ---
 - name: 
-  hosts: web 
+  hosts: all 
   gather_facts: false
   tasks: 
     
@@ -24,7 +24,7 @@
     - debug: 
         msg: "servers have been patched" 
 
-- hosts: web 
+- hosts: all 
   gather_facts: false
   tasks:
     - name: rebooting severs
