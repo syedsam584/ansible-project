@@ -1,6 +1,9 @@
 ---
 - name: Creating user
   hosts: all 
+  gather_facts: false
+  become: true
+  become_user: root
   tasks:
     - name: creating user
       user: 

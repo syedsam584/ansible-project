@@ -11,12 +11,13 @@
       command: yum clean metadata
     
     - name: prestep 03
-      command: rm-rf /var/cache/yum/*
-      command: subscription-manager repos --list
-      command: yum repolist
+      command: |
+      rm-rf /var/cache/yum/*
+      subscription-manager repos --list
+      yum repolist
  
     - name: patching servers
-      yum:
+      ansible.builtin.dnf:
         name: '*'
         state: latest
         update_cache: yes 
