@@ -34,6 +34,7 @@
       reboot:
        reboot_timeout: 1800 
        test_command: uptime
+      become: yes    
 
     - name: WHO AM I 
       command: whoami
