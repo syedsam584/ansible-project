@@ -4,7 +4,6 @@
   gather_facts: false
   become: true
   become_user: root
-  become_method: su
   tasks: 
     
     - name: prestep 01
@@ -29,11 +28,15 @@
 
 - hosts: all 
   gather_facts: false
+  become: true
+  become_user: root
   tasks:
+
     - name: rebooting severs
       reboot:
        reboot_timeout: 1800 
        test_command: uptime
+      tags: reboot
 
     - name: WHO AM I 
       command: whoami
