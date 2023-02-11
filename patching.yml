@@ -26,7 +26,7 @@
     - debug: 
         msg: "servers have been patched" 
 
-- hosts: web 
+- hosts: all
   gather_facts: false
   become: true
   become_user: root
