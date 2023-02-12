@@ -18,3 +18,5 @@
         src: /dev/nvme0n2p2
         fstype: xfs 
         state: mounted
+
+...    
