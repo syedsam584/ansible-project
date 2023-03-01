@@ -1,6 +1,6 @@
 ---
 - name: 
-  hosts: all 
+  hosts: web 
   gather_facts: false
   become: true
   become_user: root
@@ -28,7 +28,7 @@
 
 - hosts: all
   gather_facts: false
-  become: true
+  become: web 
   become_user: root
   tasks:
 
