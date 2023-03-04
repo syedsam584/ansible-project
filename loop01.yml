@@ -54,7 +54,7 @@
     
   - name:  Displaying information of user
     debug: 
-       msg: "{{ Displayinginfo.stdout_lines }}"
+       msg: "{{ Displayinginfo.stdout }}"
                  
 ...    
 
