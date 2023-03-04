@@ -1,0 +1,46 @@
+---
+- name: install multiple stuff
+  hosts: web
+  gather_facts: false
+  tasks: 
+  - name: Creating group
+    group: 
+      name: "{{item}}"  
+      state: present 
+  #   gid: 9966     
+    with_items: 
+         - Office
+         - dev
+         - test-team
+
+  - name: multiple stuff
+    user:  
+     name: "{{item}}"
+     state: present
+     groups: Office,dev,test-team
+    loop:
+       - sarah
+       - abdul
+       - saniya
+       - john
+       - syed
+
+  - name: validating users
+    shell: "tail -5 /etc/passwd" 
+    register: displayusers 
+ 
+  - name: validating groups
+    shell: "tail -4 /etc/group"
+    register: displaygroups
+    ignore_errors: yes
+
+  - name: Displaying user 
+    debug:
+       msg: "{{ displayusers.stdout_lines }}" 
+
+  - name: Displaying groups 
+    debug:       
+       msg: "{{ displaygroups.stdout_lines }}"
+  
+  
+...    

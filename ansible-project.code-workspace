@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../Documents/ansible-project"
+		},
+		{
+			"name": "ansible-project",
+			"path": "../../../Documents/ansible-project/ansible-project"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
