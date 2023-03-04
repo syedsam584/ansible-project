@@ -1,6 +1,6 @@
 --- 
 - name: testing Host_Var
-  Hosts: ClientVM01
+  hosts: ClientVM01
   gather_facts: false
   become: true
   tasks: 
@@ -10,6 +10,9 @@
        comment: "This is DevOps user"
        shell: /bin/ksh
        groups: Office
+      
+    - name: validation user
+      shell: "id {{name}}"
       register: newuser
     
     - name: printing value
