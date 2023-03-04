@@ -14,10 +14,10 @@
       
     - name: validation user
       shell: "id {{name}}"
-      register: newuser
+      register: new_user
     
     - name: printing value
       debug: 
-          msg: "newuser.stdout"
+        var: new_user.stdout_lines
 
 ...
