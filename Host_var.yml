@@ -18,6 +18,11 @@
     
     - name: printing value
       debug: 
+<<<<<<< HEAD
         var: new_user.stdout_lines
 
+=======
+          msg: "newuser.stdout"
+    
+>>>>>>> 9dc79a15e2f1cd6ac5a508cebcb480808f8fe9ba
 ...
