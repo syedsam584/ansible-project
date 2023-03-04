@@ -44,16 +44,17 @@
   
   - name: find users info. 
     shell: "id {{item}}"
-    register: Displayinginfo
     loop:
        - sarah
        - abdul
        - saniya
        - john
        - syed
-    
+    register: Displayinginfo
+
   - name:  Displaying information of user
     debug: 
        msg: "{{ Displayinginfo.stdout_lines }}"
                  
 ...    
+
