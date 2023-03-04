@@ -1,6 +1,6 @@
 --- 
 - name: testing Host_Var
-  Hosts: ClientVM01.yml
+  Hosts: ClientVM01
   gather_facts: false
   become: true
   tasks: 
