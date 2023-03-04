@@ -1,0 +1,7 @@
+---
+- name: Hello World
+  hosts: Web 
+  tasks: 
+  - name: hello world
+    debug: 
+       msg: "{{ Hello-World }}"
