@@ -8,6 +8,8 @@
        src: /root/rocky.copy 
        dest: $HOME/rocky.copy
        remote_src: true 
+
 ...   
+
      
  
