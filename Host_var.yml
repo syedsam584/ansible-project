@@ -11,6 +11,9 @@
        comment: "This is DevOps user"
        shell: /bin/ksh
        groups: Office
+      
+    - name: validation user
+      shell: "id {{name}}"
       register: newuser
     
     - name: printing value
