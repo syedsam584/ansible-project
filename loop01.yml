@@ -58,10 +58,10 @@
        displaying_info:
           stdout_lines:
             sarah: "{{ displaying_info.results[0].stdout_lines }}"
-            abdul: 
-
-
-
-                 
+            abdul: "{{ displaying_info.results[1].stdout_lines }}"
+            saniya: "{{ displaying_info.results[2].stdout_lines }}"
+            john: "{{ displaying_info.results[3].stdout_lines }}"
+            syed: "{{ displaying_info.results[4].stdout_lines}"
+            
 ...    
 
