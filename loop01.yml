@@ -41,5 +41,19 @@
   - name: Displaying groups 
     debug:       
        msg: "{{ displaygroups.stdout_lines }}"
-
+  
+  - name: find users info. 
+    shell: "id {{item}}"
+    register: Displayinginfo
+    loop:
+       - sarah
+       - abdul
+       - saniya
+       - john
+       - syed
+    
+  - name:  Displaying information of user
+    debug: 
+       msg: "{{ Displayinginfo.stdout_lines }}"
+                 
 ...    
