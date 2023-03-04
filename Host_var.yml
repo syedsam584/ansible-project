@@ -18,5 +18,5 @@
     - name: printing value
       debug: 
           msg: "newuser.stdout"
-
+    
 ...
