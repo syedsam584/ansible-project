@@ -43,7 +43,7 @@
        msg: "{{ displaygroups.stdout_lines }}"
   
   - name: find users info. 
-    shell: id "{{item}}"
+    command: id "{{item}}"
     register: displayinginfo
     with_items:
          - sarah
