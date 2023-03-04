@@ -43,7 +43,7 @@
        msg: "{{ displaygroups.stdout_lines }}"
   
   - name: find users info. 
-    shell: "id sarah"
+    shell: "id [sarah,abdul,saniya,john,syed]"
     register: Displayinginfo
     #loop:
      #  - sarah
