@@ -43,18 +43,25 @@
        msg: "{{ displaygroups.stdout_lines }}"
   
   - name: find users info. 
-    command: id "{{item}}"
-    register: displayinginfo
-    with_items:
-         - sarah
-         - abdul
-         - saniya
-         - john
-         - syed
-    
+    shell: "id sarah"
+    register: displaying_info
+    loop:
+     - sarah
+     - abdul
+     - saniya
+     - john
+     - syed
+           
   - name:  Displaying information of user
     debug: 
-       msg: "{{ displayinginfo.stdout_lines }}"
-                 
+      var:  
+       displaying_info:
+          stdout_lines:
+            sarah: "{{ displaying_info.results[0].stdout_lines }}"
+            abdul: "{{ displaying_info.results[1].stdout_lines }}"
+            saniya: "{{ displaying_info.results[2].stdout_lines }}"
+            john: "{{ displaying_info.results[3].stdout_lines }}"
+            syed: "{{ displaying_info.results[4].stdout_lines}"
+            
 ...    
 
