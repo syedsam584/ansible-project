@@ -3,7 +3,7 @@
  - name: http install
    yum:
      name: httpd
-     state: absent
+     state: present
    tags:
     - install
    notify:
