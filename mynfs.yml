@@ -43,3 +43,25 @@
     command: |
         echo "{{diskname}} {{dir_path}} xfs defaults 0 0" >> /etc/fstab
 
+  - name: Configure exports
+    lineinfile:
+        path: /etc/exports
+        line: "{{dir_path}} 192.168.48.0/24(rw,sync)"
+   
+  - name: nfs service restart
+    service: 
+         name: nfs-server.service
+         state: restarted
+         enabled: yes
+         
+
+  - name: Allow nfs through firewall
+    firewalld:
+        service: nfs
+        permanent: yes
+        state: enabled
+        immediate: yes      
+
+
+    
+
