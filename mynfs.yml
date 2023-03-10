@@ -1,9 +1,10 @@
 ---
 - name: Setting up NFS server
-  hosts: web
+  hosts: localhost
   gather_facts: false
   become: true
-  vars: 
+  vars_prompt: 
+     
      - name: diskname
        prompt: "what is your diskname ?"
        private: no
@@ -14,15 +15,17 @@
 
   tasks:
   - name: first installing packages
-    yum: 
+    dnf: 
      name: nfs-utils 
      state: present
-    
+    ignore_errors: true
+
   - name: Creating new file system for NFS mount. 
     filesystem: 
        dev: "{{diskname}}"
        fstype: ext4
-   
+       force: yes
+
   - name: Create Directory
     file: 
        path: "{{dir_path}}"
