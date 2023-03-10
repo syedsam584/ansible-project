@@ -20,19 +20,19 @@
     
   - name: Creating new file system for NFS mount. 
     filesystem: 
-       dev: {{diskname}}
+       dev: "{{diskname}}"
        fstype: ext4
    
   - name: Create Directory
     file: 
-       path: {{dir_path}}
+       path: "{{dir_path}}"
        state: directory
        mode: "0777"
 
   - name: mount partition
     mount:
-       path: {{dir_path}}
-       src: {{diskname}}
+       path: "{{dir_path}}"
+       src: "{{diskname}}"
        fstype: ext4
        state: mounted 
 
