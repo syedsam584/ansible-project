@@ -3,17 +3,12 @@
   hosts: localhost
   gather_facts: false
   become: true
-  vars_prompt: 
-     
-     - name: diskname
-       prompt: "what is your diskname ?"
-       private: no
-     
-     - name: dir_path
-       prompt: "what is your dir_path name ?"
-       private: no
+  vars: 
+  - disk_name: /dev/nvme0n2p2
+  - dir_path: /root/trynfs
 
   tasks:
+  
   - name: first installing packages
     dnf: 
      name: nfs-utils 
@@ -22,7 +17,7 @@
 
   - name: Creating new file system for NFS mount. 
     filesystem: 
-       dev: "{{diskname}}"
+       dev: "{{disk_name}}"
        fstype: ext4
        force: yes
     ignore_errors: true
@@ -36,13 +31,13 @@
   - name: mount partition
     mount:
        path: "{{dir_path}}"
-       src: "{{diskname}}"
+       src: "{{disk_name}}"
        fstype: ext4
        state: mounted 
 
   - name: Create entry at /etc/fstab for file system.
     command: |
-        echo "{{diskname}} {{dir_path}} xfs defaults 0 0" >> /etc/fstab
+        echo "{{disk_name}} {{dir_path}} xfs defaults 0 0" >> /etc/fstab
 
   - name: Configure exports
     lineinfile:
@@ -92,13 +87,13 @@
         - firewall-cmd --permanent --add-service=nfs
         - firewall-cmd --reload
 
-          # - name: validation export from client side. 
-          #shell: "showmount –e 192.168.48.138"
-          #register: exportoutput
+    - name: validation export from client side.
+      command: "showmount -e 192.168.48.138"
+      register: exportoutput
 
-          # - name: exportout
-          #debug: 
-          #var: exportoutput.stdout 
+    - name: exportoutput
+      debug:
+         var: exportoutput.stdout_lines
 
     - name: Create Directory
       file:
@@ -107,15 +102,15 @@
         mode: "0777"
 
     - name: mounting nfs to client nfs
-      command: "mount -t nfs 192.168.48.138:/root/newfs /root/syednfs"
-      
+      command: "mount -t nfs 192.168.48.138:/root/trynfs /root/syednfs"
+      tags:
+      - t1
+
     - name: Create entry at /etc/fstab for file system
       lineinfile:
         path: /etc/fstab
-        line: "192.168.48.138:/root/newnfs /root/clinewnfs nfs default 0 0" 
+        line: "192.168.48.138:/root/trynfs /root/clinewnfs nfs default 0 0" 
         state: present 
- 
-      
-
-...
-     
+      tags:
+      - t2
+...     
