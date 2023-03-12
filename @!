@@ -1,0 +1,14 @@
+---
+- name: install multiple stuff
+  hosts: web
+  tasks: 
+  - name: multiple stuff
+    user:  
+     name: "{{item}}"
+     state: absent 
+    loop:
+       - zip
+       - unzip
+       - tree
+       - httpd
+ 
