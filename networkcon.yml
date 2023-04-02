@@ -2,26 +2,26 @@
   hosts: web
   gather_facts: false
   become: true
-  vars_prompt: 
-   
-     - name: conname
-       prompt: "please enter the connection name?"
-       private: no
+  vars_prompt:
 
-     - name: myip4
-       prompt: "what ip4 would you like to add?"
-       private: no 
+  - name: conname
+    prompt: "please enter the connection name?"
+    private: no
+
+  - name: myip4
+    prompt: "what ip4 would you like to add?"
+    private: no
 
   tasks:
-  - name: Configure network interface
+  - name: Configuring network interface
     nmcli:
-     conn_name: "{{conname}}" 
-     ifname: ens160
-     type: ethernet 
-     ip4: "{{ myip4 }}"  
-     gw4: 192.168.48.2
-     state: present
-     autoconnect: yes 
+      conn_name: "{{conname}}"
+      ifname: ens160
+      type: ethernet
+      ip4: "{{ myip4 }}"
+      gw4: 192.168.48.2
+      state: present
+      autoconnect: yes
 
   - name: displaying list of connections.
     command: "nmcli con show"
@@ -29,8 +29,6 @@
 
   - name: displaying connections on host.
     debug:
-       var: displaycon.stdout_lines
-
-... 
+      var: displaycon.stdout_lines
 
 
