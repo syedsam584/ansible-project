@@ -1,0 +1,28 @@
+name: network con delete
+hosts: web
+gather_facts: false
+become: true
+vars_prompt:
+- name: conname
+  prompt: "please enter the connection name to delete?"
+  private: no
+
+tasks:
+- name: displaying list of connections.
+  command: "nmcli con show"
+  register: displaycon
+
+- name: displaying connections on host.
+  debug:
+    var: displaycon.stdout_lines
+
+- name:
+  command: "nmcli con del {{ conname }}"
+
+- name: displaying list after delete connections.
+  command: "nmcli con show"
+  register: displaycon
+
+- name: displaying connections on host after delete.
+  debug:
+    var: displaycon.stdout_lines
