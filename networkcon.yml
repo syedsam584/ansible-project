@@ -9,4 +9,4 @@
       ipaddr: 192.168.48.150
       netmask: 255.255.255.0
       gateway: 192.168.48.2
-
+      state: present
