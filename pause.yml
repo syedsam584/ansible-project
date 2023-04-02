@@ -1,9 +1,0 @@
----
-- name: pause our playbook for seconds 
-  hosts: all
-  tasks: 
-  - name: pause playbook for 10 seconds
-    pause: 
-      seconds: 10
-
-... 
