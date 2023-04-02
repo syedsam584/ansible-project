@@ -1,0 +1,19 @@
+---
+# tasks file for httpd
+ - name: http install
+   yum:
+     name: httpd
+     state: present
+   tags:
+    - install
+   notify:
+   - start httpd service
+ 
+ - name: copying file
+   template:
+      src: /home/ansible/ansible-project/Roles/httpd/templates/index.html
+      dest: /var/www/html/index.html
+
+ 
+
+
