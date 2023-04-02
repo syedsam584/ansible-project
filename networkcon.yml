@@ -1,19 +1,13 @@
 - name: Configure network
-  hosts: ClientVM001 
+  hosts: web
+  gather_facts: false
   become: true
-  vars:
-    interface: enp0s3
-    method: static
-    ipaddr: 192.168.48.150
-    netmask: 255.255.255.0
-    gateway: 192.168.48.2
-  
   tasks:
   - name: Configure network interface
     nmcli:
-      name: "{{ interface }}"
-      method: "{{ method }}"
-      ipaddr: "{{ ipaddr }}"
-      netmask: "{{ netmask }}"
-      gateway: "{{ gateway }}"
-
+     conn_name: mycon007 
+     ifname: ens160
+     type: ethernet 
+     ip4: 192.168.48.175/24 
+     gw4: 192.168.48.2
+     state: present
