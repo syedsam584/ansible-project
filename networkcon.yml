@@ -1,5 +1,5 @@
 - name: Configure network
-  hosts: node1
+  hosts: ClientVM001 
   become: true
   vars:
     interface: enp0s3
@@ -7,6 +7,7 @@
     ipaddr: 192.168.48.150
     netmask: 255.255.255.0
     gateway: 192.168.48.2
+  
   tasks:
   - name: Configure network interface
     network_interface:
