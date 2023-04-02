@@ -10,9 +10,8 @@
   
   tasks:
   - name: Configure network interface
-    network_interface:
+    nmcli:
       name: "{{ interface }}"
-      state: up
       method: "{{ method }}"
       ipaddr: "{{ ipaddr }}"
       netmask: "{{ netmask }}"
