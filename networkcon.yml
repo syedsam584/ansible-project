@@ -9,9 +9,8 @@
     gateway: 192.168.48.2
   tasks:
   - name: Configure network interface
-    network_interface:
+    nmcli:
       name: "{{ interface }}"
-      state: up
       method: "{{ method }}"
       ipaddr: "{{ ipaddr }}"
       netmask: "{{ netmask }}"
