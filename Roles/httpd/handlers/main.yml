@@ -1,0 +1,10 @@
+---
+# handlers file for httpd
+- name: start httpd service
+  service:
+      name: httpd
+      state: restarted
+  tags:
+  - sohail
+
+
