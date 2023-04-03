@@ -1,6 +1,6 @@
 ---
 - name: instaling package
-  hosts: all
+  hosts: web 
   become: true
   become_user: root
   gather_facts: false

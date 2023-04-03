@@ -1,0 +1,15 @@
+---
+- name: firewalld adding ports
+  hosts: all
+  become: True
+  tasks:
+      - name: Adding firewall rule
+        firewalld:
+           port: 80/tcp
+           state: enabled
+           permanent: yes 
+
+      - name: Reload firewall
+        systemd: 
+           name: firewalld 
+           state: reloaded
