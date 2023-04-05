@@ -1,0 +1,15 @@
+- name: Grant sudo access to a user
+  hosts: all
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Add user to sudoers file
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^{{ username }}\s+'
+        line: '{{ username }} ALL=(ALL:ALL) ALL'
+      vars:
+        username: syed
+
