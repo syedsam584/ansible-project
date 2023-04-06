@@ -7,9 +7,8 @@
     - name: Add user to sudoers file
       lineinfile:
         dest: /etc/sudoers
-        state: present
+        state: absent 
         regexp: '^{{ username }}\s+'
         line: '{{ username }} ALL=(ALL:ALL) ALL'
       vars:
         username: syed
-

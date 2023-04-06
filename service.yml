@@ -1,0 +1,32 @@
+
+
+- name: service playbook
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks: 
+  - name: adding service playbook.
+    service: 
+        name: vsftpd
+        state: started
+        enabled: true
+          
+  - name: Displaying service 
+    command: systemctl status vsftpd 
+    register: servicepick
+
+  - name: Displaying service
+    debug: 
+       var: servicepick.stdout_lines 
+
+          
+           
+       
+
+
+
+
+
+
+
+

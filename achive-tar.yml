@@ -1,0 +1,30 @@
+- name: playbook to tar a file. 
+  hosts: all
+  gather_facts: false
+  become: true
+  vars: 
+    - path : /opt/etc.gz
+      
+  tasks: 
+    - name: tar a file.
+      archive:
+         path: /etc
+         dest: "{{ path }}" 
+         format: gz 
+
+    - name: display output file
+      command: "ls -lh {{ path }}" 
+      register: tarpick 
+
+    - name: display output file
+      command: "du -h {{ path }}"
+      register: tarpick1
+
+    - debug: 
+         var: "{{ item }}.stdout_lines"   
+      loop: 
+        - tarpick
+        - tarpick1 
+
+
+
