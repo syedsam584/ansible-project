@@ -1,0 +1,43 @@
+- name: Configure team bonding
+  hosts: all
+  gather_facts: false
+  become: yes
+
+  vars:
+    interface1: ens161
+    interface2: ens193
+    team_name: team0
+    team_mode: activebackup
+
+  tasks:
+  - name: Install teamd package
+    yum:
+      name: teamd
+      state: present
+
+  - name: Create team interface
+    nmcli:
+      type: team
+      con-name: "{{ team_name }}"
+      ifname: "{{ team_name }}"
+      config: "{{ team_mode }}"
+      state: present
+
+  - name: Add interfaces to team interface
+    nmcli:
+      type: team-slave
+      con-name: "{{ interface1 }}"
+      master: "{{ team_name }}"
+      state: present
+
+  - name: Add interfaces to team interface
+    nmcli:
+      type: team-slave
+      con-name: "{{ interface2 }}"
+      master: "{{ team_name }}"
+      state: present
+
+  - name: Restart network service
+    service:
+      name: NetworkManager
+      state: restarted
