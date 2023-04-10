@@ -11,4 +11,4 @@
         regexp: '^{{ username }}\s+'
         line: '{{ username }} ALL=(ALL:ALL) ALL'
       vars:
-        username: syed
+        username: syeds
