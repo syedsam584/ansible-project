@@ -26,9 +26,9 @@
     - debug: 
         msg: "servers have been patched" 
 
-- hosts: node1 
+- hosts: all 
   gather_facts: false
-  become: all
+  become: yes
   become_user: root
   tasks:
 
