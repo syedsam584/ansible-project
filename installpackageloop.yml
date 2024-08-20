@@ -4,11 +4,11 @@
   - name: multiple stuff
     user:
       name: "{{item}}"
-      state: absent
+      state: present
     loop:
     - zip
     - unzip
     - tree
     - httpd
     - nfs-utils
-
+   
