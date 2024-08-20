@@ -1,0 +1,112 @@
+Ansible AWX Installation on RHEL 8
+Posted on July 9, 2022 by admin
+In this toturial we shall demostrate all the steps to deploy Ansible AWX on RHEL 8.x servers. Ansible AWX is the community version of Ansible Tower, where system administrators will be able to handle Ansible using the GUI interface.
+
+Configure SELinux
+
+By default, SELinux is enforcing in CentOS/RHEL 7/8. It is recommended to change SELINUX=enforcing to SELINUX=disabled to run Ansible AWX error free:
+# nano /etc/sysconfig/selinux
+
+Replace the value “enforcing” with “disabled”:
+SELINUX=disabled
+
+Install EPEL Repository
+
+You will need to install the extra packages for enterprise Linux (EPEL) repository on your CentOS/RHEL 7/8:
+# dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+Install Required Packages
+
+Type below to install these additional packages if you are running a CentOS/RHEL 8:
+# dnf -y install git gcc gcc-c++ ansible nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip wget nano libseccomp
+
+Install Docker
+
+Type below to add Docker official repository on CentOS/RHEL 8:
+# dnf config-manager –add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+# wget https://download.docker.com/linux/centos/docker-ce.repo –directory-prefix /etc/yum.repos.d/
+
+Uninstal older Docker or Podman
+
+# sudo yum remove docker \
+docker-client \
+docker-client-latest \
+docker-common \
+docker-latest \
+docker-latest-logrotate \
+docker-logrotate \
+docker-engine \
+podman \
+runc
+
+Next, type below command to install Docker on CentOS/RHEL 8:
+# dnf -y install docker-ce
+
+Change Python3 to be Default
+
+Type below command to create python3 alias: (only on CentOS/RHEL8)
+# alternatives –set python /usr/bin/python3
+
+Verify default python version:
+# python –version
+
+You should see output like below:
+Python 3.6.8
+
+Next, start the Docker service and make it persistent even when system reboot with below command:
+# systemctl start docker
+# systemctl enable docker
+
+Confirm that docker is active and running:
+# systemctl status docker
+
+Install pip3 and Update
+
+# pip3 install -U pip
+
+Install Docker Compose
+
+Type below to install Docker Compose on CentOS/RHEL 7/8:
+# pip3 install setuptools_rust
+# pip3 install wheel
+# pip3 install docker-compose
+
+Download Ansible AWX
+
+We generally recommend that you should view the GitHub releases page before download.
+You can download Ansible AWX version 17.1.0 from the Git Hub repository using the below command:
+# cd ~
+# git clone -b 17.1.0 https://github.com/ansible/awx.git
+
+When download complete, type below command to generate a secret key using openssl and that key will be used to encrypt inventory file:
+# openssl rand -base64 30
+
+Copy your secret key and save it for later use in the inventory file.
+
+Install Ansible AWX
+
+You need to edit inventory file like below:
+# nano ~/awx/installer/inventory
+
+Find the following directives, uncomment them by removing the #, and update the values accordingly:
+admin_password=StrongPassword
+secret_key=Paste_Your_Secret_Key_Here
+pg_database=postgres
+pg_password=StrongPassword
+awx_alternate_dns_servers=”8.8.8.8,8.8.4.4″
+postgres_data_dir=”/var/lib/awx/pgdocker”
+docker_compose_dir=”/var/lib/awx/awxcompose”
+project_data_dir=”/var/lib/awx/projects”
+
+Save and close the file when you are finished.
+
+Type the following command to install AWX:
+# ansible-playbook -i ~/awx/installer/inventory ~/awx/installer/install.yml -v
+
+You can verify the running containers with the following command:
+# docker ps
+
+Access Ansible AWX From the Web Browser
+
+Access AWX Web Interface
+Open up your preferred web browser and type the http://your-server-ip
