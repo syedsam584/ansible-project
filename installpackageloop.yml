@@ -1,14 +1,22 @@
-- name: install multiple stuff
-  hosts: web
+- name: Install multiple packages
+  hosts: all
   tasks:
-  - name: multiple stuff
-    user:
-      name: "{{item}}"
-      state: present
-    loop:
-    - zip
-    - unzip
-    - tree
-    - httpd
-    - nfs-utils
+    - name: Install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - zip
+        - unzip
+        - tree
+        - httpd
+        - nfs-utils
+
+    - name: Gather installed package list
+      command: rpm -qa --qf "%{NAME}\n"
+      register: installed_packages
+
+    - name: Show installed packages
+      debug:
+        msg: "{{ installed_packages.stdout_lines }}"
    
