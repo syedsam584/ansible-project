@@ -28,7 +28,7 @@
 
 - hosts: node1 
   gather_facts: false
-  become: web 
+  become: all
   become_user: root
   tasks:
 
